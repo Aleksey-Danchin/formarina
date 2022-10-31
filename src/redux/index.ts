@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import formulasReducer from "./formulasSlice";
+import questionsReducer from "./questionsSlice";
 
 export const store = configureStore({
 	reducer: {
-		formulas: formulasReducer,
+		questions: questionsReducer,
 	},
 });
 
