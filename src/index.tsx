@@ -12,6 +12,7 @@ import "@fontsource/roboto/700.css";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./redux";
 import { Provider } from "react-redux";
+import { CombinationsProvider } from "./providers/Combinations/CombinationsProvider";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement
@@ -19,11 +20,13 @@ const root = ReactDOM.createRoot(
 
 root.render(
 	<React.StrictMode>
-		<Provider store={store}>
-			<BrowserRouter>
-				<App />
-			</BrowserRouter>
-		</Provider>
+		<CombinationsProvider>
+			<Provider store={store}>
+				<BrowserRouter>
+					<App />
+				</BrowserRouter>
+			</Provider>
+		</CombinationsProvider>
 	</React.StrictMode>
 );
 
