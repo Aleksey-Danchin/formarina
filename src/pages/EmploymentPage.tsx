@@ -1,4 +1,4 @@
-import { Container, Card, CardContent, Box } from "@mui/material";
+import { Container, Card, CardContent, Box, Button } from "@mui/material";
 import { FC, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { QuestionProps, Question } from "../components/Question";
@@ -13,19 +13,19 @@ export const EmploymentPage: FC = () => {
 	const dispatch = useAppDispatch();
 	const naviagte = useNavigate();
 
+	const isSolved = questions.every((question) => question.solved);
+
 	const onAnswer: QuestionProps["onAnswer"] = (problemId) =>
 		dispatch(answer(problemId));
 
 	const onSolve: QuestionProps["onSolve"] = (id, flag) => {
-		dispatch(solve({ id, flag }));
-
-		const question = questions.find(
-			(question) => question.problem.id === id
-		);
+		const question = questions[number];
 
 		if (question && !question.solved) {
 			setNumber((x) => Math.min(x + 1, questions.length - 1));
 		}
+
+		dispatch(solve({ id, flag }));
 	};
 
 	useEffect(() => {
@@ -55,12 +55,29 @@ export const EmploymentPage: FC = () => {
 							onSelect={(stepNumber) => setNumber(stepNumber)}
 						/>
 					</Box>
-
 					<Question
 						{...questions[number]}
 						onAnswer={onAnswer}
 						onSolve={onSolve}
 					/>
+
+					{isSolved && (
+						<Box
+							sx={{
+								mt: 5,
+								display: "flex",
+								flexDirection: "row",
+								justifyContent: "center",
+							}}
+						>
+							<Button
+								variant="contained"
+								onClick={() => naviagte("/")}
+							>
+								Вернуться к выбору тем
+							</Button>
+						</Box>
+					)}
 				</CardContent>
 			</Card>
 		</Container>
