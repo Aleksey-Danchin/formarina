@@ -4,7 +4,7 @@ import questionsReducer from "./questionsSlice";
 
 export const store = configureStore({
 	reducer: {
-		questions: questionsReducer,
+		questionsSlice: questionsReducer,
 	},
 });
 

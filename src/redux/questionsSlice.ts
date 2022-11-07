@@ -14,7 +14,7 @@ const getInitialState = () =>
 	} as QuestionsState);
 
 export const questionsSlice = createSlice({
-	name: "questions",
+	name: "questionsSlice",
 
 	initialState: getInitialState(),
 
