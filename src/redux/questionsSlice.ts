@@ -34,10 +34,34 @@ export const questionsSlice = createSlice({
 					)
 			);
 		},
+
+		answer: (state, action: PayloadAction<number>) => {
+			const question = state.questions.find(
+				(question) => question.problem.id === action.payload
+			);
+
+			if (question) {
+				question.answer = true;
+			}
+		},
+
+		solve: (
+			state,
+			action: PayloadAction<{ id: number; flag: boolean }>
+		) => {
+			const question = state.questions.find(
+				(question) => question.problem.id === action.payload.id
+			);
+
+			if (question) {
+				question.solved = true;
+				question.success = action.payload.flag;
+			}
+		},
 	},
 });
 
 // Action creators are generated for each case reducer function
-export const { prepare } = questionsSlice.actions;
+export const { prepare, answer, solve } = questionsSlice.actions;
 
 export default questionsSlice.reducer;
