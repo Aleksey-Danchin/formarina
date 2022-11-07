@@ -2,7 +2,15 @@ import { useCallback, useState } from "react";
 
 export const useHistoredState = <T>(
 	initState: T
-): [T, { undo: () => void; redo: () => void; add: (item: T) => void }] => {
+): [
+	T,
+	{
+		undo: () => void;
+		redo: () => void;
+		add: (item: T) => void;
+		reset: (initState: T) => void;
+	}
+] => {
 	const [history, setHistory] = useState<Array<T>>([initState]);
 	const [index, setIndex] = useState(0);
 
@@ -25,5 +33,10 @@ export const useHistoredState = <T>(
 		[history, index]
 	);
 
-	return [history[index], { undo, redo, add }];
+	const reset = useCallback((initState: T) => {
+		setIndex(0);
+		setHistory([initState]);
+	}, []);
+
+	return [history[index], { undo, redo, add, reset }];
 };

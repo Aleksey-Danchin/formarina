@@ -1,5 +1,5 @@
 import { FC, useEffect } from "react";
-import { Card, CardContent } from "@mui/material";
+import { Box, Button, Card, CardContent } from "@mui/material";
 import { useAppSelector } from "./redux";
 import { Container } from "@mui/system";
 import { NestedProvider } from "./components/NestedList/NestedProvider";
@@ -12,6 +12,8 @@ export const App: FC = () => {
 	const [selected, selectedApi] = useHistoredState<Array<string>>([]);
 
 	const items = useProblemsListData(problems);
+
+	const selectedFlag = selected.length > 0;
 
 	useEffect(() => {
 		const keydownHandler = (e: KeyboardEvent) => {
@@ -39,6 +41,17 @@ export const App: FC = () => {
 						selected={selected}
 						onSelect={selectedApi.add}
 					/>
+					<Box
+						sx={{
+							display: "flex",
+							width: "100%",
+							justifyContent: "flex-end",
+						}}
+					>
+						<Button variant="contained" disabled={!selectedFlag}>
+							Начать
+						</Button>
+					</Box>
 				</CardContent>
 			</Card>
 		</Container>

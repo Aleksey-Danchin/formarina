@@ -9,7 +9,7 @@ import {
 	useSelectedFlag,
 } from "./useSelectedFlag";
 
-type CustomChecboxProps = {
+export type CustomChecboxProps = {
 	id: string;
 	onClick?: MouseEventHandler;
 };

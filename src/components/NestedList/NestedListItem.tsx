@@ -13,7 +13,7 @@ import {
 
 import { CustomChecbox } from "./CustomChecbox";
 
-type NestedListItemProps = {
+export type NestedListItemProps = {
 	item: ListItemData;
 	level?: number;
 };

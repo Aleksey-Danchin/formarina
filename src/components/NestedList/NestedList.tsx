@@ -3,7 +3,7 @@ import { FC, useContext, useMemo } from "react";
 import { NestedContext } from "./Context";
 import { NestedListItem } from "./NestedListItem";
 
-type NestedListProps = {
+export type NestedListProps = {
 	parent?: string;
 	level?: number;
 };
