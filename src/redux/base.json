@@ -53,7 +53,7 @@
 		"path": "Механика/Кинематика/Движение с ускорением",
 		"type": "formula",
 		"description": "Пройденный путь при равноускоренном движение",
-		"solution": "S = v_o \\cdot t + \\frac{a \\cdot t^2}{2}"
+		"solution": "S = v_o \\cdot t + \\frac{a \\cdot t^2}{2} = \\frac{v^2-v_{0}^{2}}{2a}"
 	},
 	{
 		"id": 9,
@@ -61,5 +61,82 @@
 		"type": "formula",
 		"description": "Координата при равноускоренном движение",
 		"solution": "x = x_0 + v_o \\cdot t + \\frac{a \\cdot t^2}{2}"
+	},
+	{
+		"id": 10,
+		"path": "Механика/Кинематика/Движение по окружности",
+		"type": "formula",
+		"description": "Центростремительное ускорение",
+		"solution": "a=\\frac{v^2}{R} = w^2 \\cdot R"
+	},
+	{
+		"id": 11,
+		"path": "Механика/Кинематика/Движение по окружности",
+		"type": "formula",
+		"description": "Угловая скорость",
+		"solution": "w=\\frac{\\phi}{t}=2\\pi \\cdot \\nu"
+	},
+	{
+		"id": 12,
+		"path": "Механика/Кинематика/Движение по окружности",
+		"type": "formula",
+		"description": "Линейная скорость при вращение",
+		"solution": "v=R \\cdot w"
+	},
+	{
+		"id": 13,
+		"path": "Механика/Кинематика/Движение по окружности",
+		"type": "formula",
+		"description": "Период вращения",
+		"solution": "T = \\frac{t}{N} = \\frac{2 \\pi R}{v}"
+	},
+	{
+		"id": 14,
+		"path": "Механика/Кинематика/Движение по окружности",
+		"type": "formula",
+		"description": "Частота",
+		"solution": "\\nu = \\frac{N}{t}"
+	},
+	{
+		"id": 15,
+		"path": "Механика/Кинематика/Движение по окружности",
+		"type": "formula",
+		"description": "Период колебания математического маятника",
+		"solution": "T=2\\pi\\sqrt{\\frac{l}{g}}"
+	},
+	{
+		"id": 16,
+		"path": "Механика/Кинематика/Движение по окружности",
+		"type": "formula",
+		"description": "Период колебания пружинного маятника",
+		"solution": "T=2\\pi\\sqrt{\\frac{m}{k}}"
+	},
+	{
+		"id": 17,
+		"path": "Механика/Кинематика/Движение под углом к горизонту",
+		"type": "formula",
+		"description": "Максимальная дальность броска под углом к горизонту",
+		"solution": "S=\\frac{v_{0}^{2} \\sin(2\\alpha)}{g}"
+	},
+	{
+		"id": 18,
+		"path": "Механика/Кинематика/Движение под углом к горизонту",
+		"type": "formula",
+		"description": "Максимальная высота подъема тела брошенного под углом к горизонту",
+		"solution": "H=\\frac{v_{0} \\cdot \\sin(\\alpha)}{g}"
+	},
+	{
+		"id": 19,
+		"path": "Механика/Кинематика/Движение под углом к горизонту",
+		"type": "formula",
+		"description": "Время полета",
+		"solution": "t=\\frac{2v_0 \\cdot \\sin(\\alpha)}{g}"
+	},
+	{
+		"id": 20,
+		"path": "Механика/Кинематика/Движение под углом к горизонту",
+		"type": "formula",
+		"description": "Координаты при движение под углом к горизонту",
+		"solution": "\\left\\{\\begin{matrix} x(t)=x_0+v_0 t\\cos(\\alpha)\\\\ y(t) = y_0+v_0 t \\sin(\\alpha)-\\frac{g t^2}{2}\\end{matrix}\\right."
 	}
 ]
