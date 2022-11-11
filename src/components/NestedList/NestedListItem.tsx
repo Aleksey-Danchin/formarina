@@ -9,9 +9,15 @@ import {
 	ListItemText,
 	Collapse,
 	ListItemIcon,
+	IconButton,
+	ListItem,
 } from "@mui/material";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
 import { CustomChecbox } from "./CustomChecbox";
+import { QuestionSolution } from "../QuestionSolution";
+import { useAppSelector } from "../../redux";
 
 export type NestedListItemProps = {
 	item: ListItemData;
@@ -34,7 +40,14 @@ export const NestedListItem: FC<NestedListItemProps> = ({
 		[item.id, items]
 	);
 
-	const sx = level ? { pl: level * 2 } : {};
+	const sx = level ? { pl: 2 } : {};
+
+	const [show, setShow] = useState(false);
+
+	const problems = useAppSelector((state) => state.questionsSlice.problems);
+	const problem = useMemo(() => {
+		return problems.find((problem) => problem.description === item.label);
+	}, [item.label, problems]);
 
 	if (subitems.length) {
 		return (
@@ -61,11 +74,28 @@ export const NestedListItem: FC<NestedListItemProps> = ({
 	}
 
 	return (
-		<ListItemButton sx={sx} onClick={() => onSelect(item.id)}>
-			<ListItemIcon>
-				<CustomChecbox id={item.id} />
-			</ListItemIcon>
-			<ListItemText primary={item.label} id={item.id} />
-		</ListItemButton>
+		<>
+			<ListItem
+				sx={sx}
+				secondaryAction={
+					<IconButton onClick={() => setShow((x) => !x)}>
+						{show ? <VisibilityOffIcon /> : <VisibilityIcon />}
+					</IconButton>
+				}
+			>
+				<ListItemButton onClick={() => onSelect(item.id)}>
+					<ListItemIcon>
+						<CustomChecbox id={item.id} />
+					</ListItemIcon>
+					<ListItemText primary={item.label} id={item.id} />
+				</ListItemButton>
+			</ListItem>
+
+			{show && problem && (
+				<ListItem sx={{ ...sx, ml: 10 }} key={item.id}>
+					<QuestionSolution problem={problem} margin={false} />
+				</ListItem>
+			)}
+		</>
 	);
 };

@@ -4,12 +4,16 @@ import { FC } from "react";
 
 export type QuestionSolutionProps = {
 	problem: Problem;
+	margin?: boolean;
 };
 
-export const QuestionSolution: FC<QuestionSolutionProps> = ({ problem }) => {
+export const QuestionSolution: FC<QuestionSolutionProps> = ({
+	problem,
+	margin = true,
+}) => {
 	if (problem.type === "formula") {
 		return (
-			<Box sx={{ mt: 5, mx: "auto" }}>
+			<Box sx={{ mt: margin ? 5 : 0, mx: "auto" }}>
 				<img
 					src={
 						"https://latex.codecogs.com/gif.latex?" +
@@ -23,7 +27,7 @@ export const QuestionSolution: FC<QuestionSolutionProps> = ({ problem }) => {
 
 	if (problem.type === "term") {
 		return (
-			<Box sx={{ mt: 5 }}>
+			<Box sx={{ mt: margin ? 5 : 0 }}>
 				<Typography sx={{ textAlign: "center" }}>
 					{problem.solution}
 				</Typography>
