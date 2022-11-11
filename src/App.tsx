@@ -6,8 +6,11 @@ import { EmploymentPage } from "./pages/EmploymentPage";
 export const App: FC = () => {
 	return (
 		<Routes>
-			<Route path="/" element={<PreparePage />} />
+			<Route path="/employment/:selected" element={<EmploymentPage />} />
 			<Route path="/employment" element={<EmploymentPage />} />
+
+			<Route path="/:selected" element={<PreparePage />} />
+			<Route path="/" element={<PreparePage />} />
 		</Routes>
 	);
 };

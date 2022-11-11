@@ -1,45 +1,44 @@
-import { FC, useEffect } from "react";
+import { FC, useCallback, useMemo } from "react";
 import { Box, Button, Card, CardContent } from "@mui/material";
 import { useAppDispatch, useAppSelector } from "../redux";
 import { Container } from "@mui/system";
 import { NestedProvider } from "../components/NestedList/NestedProvider";
 import { useProblemsListData } from "../hooks/useProblemsListData";
-import { useHistoredState } from "../hooks/useHistoredState";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { prepare } from "../redux/questionsSlice";
 
 export const PreparePage: FC = () => {
 	const { problems } = useAppSelector((state) => state.questionsSlice);
 
-	const [selected, selectedApi] = useHistoredState<Array<string>>([]);
-
 	const items = useProblemsListData(problems);
+
+	const params = useParams();
+	const selected = useMemo<string[]>(() => {
+		if (!("selected" in params)) {
+			return [];
+		}
+
+		return JSON.parse(params.selected as string) as string[];
+	}, [params]);
 
 	const selectedFlag = selected.length > 0;
 
 	const navigate = useNavigate();
-	const dispatch = useAppDispatch();
 
 	const start = () => {
-		navigate("/employment");
-		dispatch(prepare(selected.map(Number)));
+		navigate(`/employment/${JSON.stringify(selected)}`);
 	};
 
-	useEffect(() => {
-		const keydownHandler = (e: KeyboardEvent) => {
-			if (e.ctrlKey) {
-				if (e.code === "KeyZ") {
-					selectedApi.undo();
-				} else if (e.code === "KeyY") {
-					selectedApi.redo();
-				}
+	const onSelect = useCallback(
+		(questions: string[]) => {
+			if (questions.length) {
+				navigate(`/${JSON.stringify(questions)}`, { replace: true });
+			} else {
+				navigate("/", { replace: true });
 			}
-		};
-
-		document.addEventListener("keydown", keydownHandler);
-
-		return () => document.removeEventListener("keydown", keydownHandler);
-	}, [selectedApi]);
+		},
+		[navigate]
+	);
 
 	return (
 		<Container>
@@ -49,7 +48,7 @@ export const PreparePage: FC = () => {
 						title="Выбирите разделы физики"
 						items={items}
 						selected={selected}
-						onSelect={selectedApi.add}
+						onSelect={onSelect}
 					/>
 					<Box
 						sx={{
