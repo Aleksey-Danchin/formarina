@@ -1,11 +1,10 @@
 import { FC, useCallback, useMemo } from "react";
 import { Box, Button, Card, CardContent } from "@mui/material";
-import { useAppDispatch, useAppSelector } from "../redux";
+import { useAppSelector } from "../redux";
 import { Container } from "@mui/system";
 import { NestedProvider } from "../components/NestedList/NestedProvider";
 import { useProblemsListData } from "../hooks/useProblemsListData";
 import { useNavigate, useParams } from "react-router-dom";
-import { prepare } from "../redux/questionsSlice";
 
 export const PreparePage: FC = () => {
 	const { problems } = useAppSelector((state) => state.questionsSlice);
